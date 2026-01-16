@@ -1,0 +1,26 @@
+{
+  "name": "crud-tasks-node",
+  "version": "1.0.0",
+  "description": "project",
+  "homepage": "https://github.com/07andre07/07andre07-crud-tasks-node#readme",
+  "bugs": {
+    "url": "https://github.com/07andre07/07andre07-crud-tasks-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/07andre07/07andre07-crud-tasks-node.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.17.1"
+  }
+}
