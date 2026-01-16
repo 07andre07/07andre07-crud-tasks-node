@@ -22,6 +22,7 @@ db.connect();
 
 app.get("/", async (req, res) => {
     res.render('index.ejs')
+    
 });
 
 app.post("/tasks", async (req, res) => {
@@ -38,6 +39,20 @@ app.post("/tasks", async (req, res) => {
         res.status(500).json({ error: 'Failed to add task' });
     }
 });
+
+
+app.get("/tasks", async (req, res) => {
+    try {
+        const answer = await db.query(
+            "SELECT * FROM tasks ORDER BY id ASC ",
+        );
+        res.json(answer.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to add task' });
+    }
+});
+
 app.listen(port, () => {
     console.log('Server running on port ' + port)
 });
