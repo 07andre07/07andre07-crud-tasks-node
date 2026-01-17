@@ -85,8 +85,10 @@ app.put("/tasks/:id", async (req, res) => {
 });
 
 app.patch("/tasks/:id", async (req, res) => {
-    const {id} = req.params;
+    const id = req.params.id;
     const {title, description} = req.body;
+/*  const title2 = req.body.title
+    const description2 = req.body.description */
     const result = await db.query(
         "UPDATE tasks SET title = COALESCE($1, title), description = COALESCE($2, description) WHERE id = $3 RETURNING *",
         [title || null, description || null, id]
@@ -114,5 +116,4 @@ app.delete("/tasks/:id", async (req, res) => {
 
 app.listen(port, () => {
     console.log('Server running on port ' + port)
-    console.log('✓ Server started successfully')
 });
