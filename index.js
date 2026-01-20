@@ -4,6 +4,7 @@ import pg from "pg";
 
 const app = express();
 
+app.set('view engine', 'ejs');
 app.use(express.json()); 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +22,13 @@ const port = 3000;
 db.connect();
 
 app.get("/", async (req, res) => {
-    res.render('index.ejs')
-    
+    try {
+        const result = await db.query("SELECT * FROM tasks ORDER BY id ASC");
+        res.render('index.ejs', { tasks: result.rows });
+    } catch (err) {
+        console.error(err);
+        res.render('index.ejs', { tasks: [] });
+    }
 });
 
 app.post("/tasks", async (req, res) => {

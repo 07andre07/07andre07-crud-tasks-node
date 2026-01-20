@@ -3,9 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Task Manager</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .tasks-section {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .task-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        background-color: #fafafa;
+      }
+      .task-item h3 {
+        color: #333;
+        margin-bottom: 5px;
+      }
+      .task-item p {
+        color: #666;
+        margin-bottom: 10px;
+      }
+      .task-id {
+        font-weight: bold;
+        color: #999;
+        font-size: 12px;
+      }
+      .no-tasks {
+        text-align: center;
+        color: #999;
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <div class="container">
+      <h1>📝 Task Manager</h1>
+      
+      <div class="tasks-section">
+        <h2>Tasks</h2>
+        <% if (tasks.length === 0) { %>
+          <div class="no-tasks">
+            <p>No tasks yet.</p>
+          </div>
+        <% } else { %>
+          <% tasks.forEach(task => { %>
+            <div class="task-item">
+              <div class="task-id">ID: <%= task.id %></div>
+              <h3><%= task.title %></h3>
+              <p><%= task.description %></p>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
   </body>
 </html>
